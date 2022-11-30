@@ -10,7 +10,8 @@ const styles = {
     },
     container: {
         width: '100%',
-        maxWidth: '1200px'
+        maxWidth: '1200px',
+        padding: '1rem 0'
     }
 }
 

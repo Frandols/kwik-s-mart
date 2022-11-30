@@ -1,34 +1,67 @@
 import { Component } from 'react'
+
 import Button from './Button'
 
 const styles = {
-    producto: {
-        border: 'solid 1px #eee',
-        boxShadow: '0 5px 5px rgb(0, 0, 0, 0.1)',
-        width: '368px',
-        padding: '10px 15px',
-        borderRadius: '5px'
+    product: {
+        boxShadow: '0 30px 40px rgb(0, 0, 0, 0.05)',
+        width: '250px',
+        padding: '1rem',
+        borderRadius: '2rem',
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gridTemplateRows: '140px 39px 39px 50px',
+        height: '300px',
+        alignItems: 'center'
     },
-    img: {
-        width: '100%'
+    productThumbnail: {
+        objectFit: 'contain',
+        width: '100%',
+        height: '100%',
+        borderRadius: '1rem'
+    },
+    productTitle: {
+        fontSize: '1rem',
+        fontWeight: '600',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
+    },
+    productPrice: {
+        fontSize: '1.2rem',
+        fontWeight: '800'
     }
 }
 
-class Producto extends Component {
+class Product extends Component {
     render() {
         const { product, addToCart } = this.props
 
         return (
-            <div style={styles.producto}>
-                <img style={styles.img} alt={product.name} src={product.img} />
-                <h3>{product.name}</h3>
-                <p>{product.price}</p>
-                <Button onClick={() => addToCart(product)}>
-                    Agregar al carro
+            <article 
+                style={styles.product}>
+                <img 
+                    style={styles.productThumbnail} 
+                    src={product.image} 
+                    alt={product.title} 
+                />
+                <h1
+                    style={styles.productTitle}>
+                    {product.title}
+                </h1>
+                <p
+                    style={styles.productPrice}>
+                    ${product.price}
+                </p>
+                <Button 
+                    onClick={
+                        () => addToCart(product)
+                    }>
+                    add to cart
                 </Button>
-            </div>
+            </article>
         )
     }
 }
 
-export default Producto
+export default Product

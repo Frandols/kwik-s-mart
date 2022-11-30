@@ -5,22 +5,39 @@ const styles = {
         backgroundColor: '#fff',
         position: 'absolute',
         marginTop: 30,
-        boxShadow: '1px 5px 5px rgb(0, 0, 0, 0.3)',
-        borderRadius: '5px',
+        boxShadow: '0px 30px 40px rgb(0, 0, 0, 0.05)',
+        borderRadius: '2rem',
         width: '300px',
-        right: 50
+        right: 0,
+        overflow: 'hidden'
     },
     ul: {
         margin: 0,
         padding: 0
     },
     product: {
-        display: 'flex',
-        justifyContent: 'space-between',
+        display: 'grid',
+        gridTemplateColumns: '50px auto 50px',
+        justifyItems: 'center',
+        gap: '1rem',
         alignItems: 'center',
-        padding: '25px 20px',
+        padding: '1rem',
         listStyleType: 'none',
-        borderBottom: 'solid 1px #aaa'
+        height: '82px'
+    },
+    productImage: {
+        objectFit: 'contain'
+    },
+    productTitle: {
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        fontSize: '1rem',
+        fontWeight: '400',
+        width: '100%'
+    },
+    productAmount: {
+        fontWeight: '600'
     }
 }
 
@@ -31,14 +48,29 @@ class CartDetails extends Component {
         return (
             <div style={styles.cartDetails}>
                 <ul style={styles.ul}>
-                    {cart.map(
-                        el => 
-                        <li style={styles.product} key={el.name}>
-                            <img alt={el.name} src={el.img} width='50' height='32' />
-                            {el.name}
-                            <span>{el.amount}</span>
-                        </li>
-                    )}
+                    {
+                        cart.map(
+                            product => <li
+                                key={product.id} 
+                                style={styles.product}>
+                                <img
+                                    style={styles.productImage}
+                                    src={product.image}
+                                    alt={product.title} 
+                                    width='50' 
+                                    height='32' 
+                                />
+                                <h1
+                                    style={styles.productTitle}>
+                                    {product.title}
+                                </h1>
+                                <span
+                                    style={styles.productAmount}>
+                                    {product.amount}
+                                </span>
+                            </li>
+                        )
+                    }
                 </ul>
             </div>
         )

@@ -3,11 +3,13 @@ import { Component } from 'react'
 const styles = {
     bubbleAlert: {
         backgroundColor: '#E9725A',
-        borderRadius: '15px',
+        borderRadius: '50%',
         color: '#fff',
-        padding: '2px 10px',
         fontSize: '0.9rem',
-        width: '20px'
+        width: '1.5rem',
+        height: '1.5rem',
+        display: 'grid',
+        placeContent: 'center'
     }
 }
 
@@ -16,13 +18,15 @@ class BubbleAlert extends Component {
         if(!n) return ''
         return n > 9 ? '9+' : n
     }
+
     render() {
         const { value } = this.props
 
         return (
-            <span style={styles.bubbleAlert}>
+            <div 
+                style={styles.bubbleAlert}>
                 {this.getNumber(value)}
-            </span>
+            </div>
         )
     }
 }

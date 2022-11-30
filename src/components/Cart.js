@@ -1,51 +1,64 @@
 import { Component } from 'react'
+
 import BubbleAlert from './BubbleAlert'
+import Button from './Button'
 import CartDetails from './CartDetails'
+
+import { ShoppingCart } from 'react-feather'
 
 const styles = {
     cart: {
-        backgroundColor: '#359A2C',
-        color: '#fff',
-        border: 'none',
-        padding: '15px',
-        borderRadius: '15px',
-        cursor: 'pointer'
+        width: '50px',
+        height: '50px',
+        position: 'relative'
     },
     bubble: {
-        position: 'relative',
-        left: 12,
-        top: 20
+        position: 'absolute',
+        right: -10,
+        top: 40
     }
 }
 
 class Cart extends Component {
     render() {
-        const { cart, cartVisible, showCart } = this.props
-        const amount = cart.reduce((a, b) => a + b.amount, 0)
+        const { 
+            cart, 
+            cartVisible, 
+            showCart 
+        } = this.props
+
+        const amount = cart.reduce(
+            (
+                a, 
+                b
+            ) => a + b.amount, 
+            0
+        )
 
         return (
-            <div>
+            <div
+                style={styles.cart}>
                 <span 
-                style={styles.bubble}>
+                    style={styles.bubble}>
                     {
-                        amount !== 0 ?
-                        <BubbleAlert 
-                        value={amount}/>
-                        :
-                        null
+                        amount !== 0 
+                        ? <BubbleAlert 
+                            value={amount}
+                        />
+                        : null
                     }
                 </span>
-                <button 
-                onClick={showCart} 
-                style={styles.cart}>
-                    Carro
-                </button>
+                <Button
+                    onClick={showCart}
+                    disabled={amount === 0}>
+                    <ShoppingCart/>
+                </Button>
                 {
-                    cartVisible ?
-                    <CartDetails 
-                    cart={cart} />
-                    :
-                    null
+                    cartVisible 
+                    ? <CartDetails 
+                        cart={cart} 
+                    />
+                    : null
                 }
             </div>
         )
