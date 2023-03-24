@@ -12,7 +12,8 @@ const styles = {
         gridTemplateColumns: '1fr',
         gridTemplateRows: '140px 39px 39px 50px',
         height: '300px',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#fff'
     },
     productThumbnail: {
         objectFit: 'contain',
